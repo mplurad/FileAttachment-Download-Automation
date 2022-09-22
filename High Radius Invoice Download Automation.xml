@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>High Radius Invoice Download Automation</name>
+    </assembly>
+    <members>
+        <member name="T:High_Radius_Invoice_Download_Automation.AuthenticationConfig">
+            <summary>
+            Description of the configuration of an AzureAD public client application (desktop/mobile application). This should
+            match the application registration done in the Azure portal
+            </summary>
+        </member>
+        <member name="P:High_Radius_Invoice_Download_Automation.AuthenticationConfig.PublicClientApplicationOptions">
+            <summary>
+            Authentication options
+            </summary>
+        </member>
+        <member name="P:High_Radius_Invoice_Download_Automation.AuthenticationConfig.MicrosoftGraphBaseEndpoint">
+            <summary>
+            Base URL for Microsoft Graph (it varies depending on whether the application is ran
+            in Microsoft Azure public clouds or national / sovereign clouds
+            </summary>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.AuthenticationConfig.ReadFromJsonFile(System.String)">
+            <summary>
+            Reads the configuration from a json file
+            </summary>
+            <param name="path">Path to the configuration json file</param>
+            <returns>AuthenticationConfig read from the json file</returns>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.#ctor(System.String,System.String,Microsoft.Identity.Client.AuthenticationResult)">
+            <summary>
+            Constructor to create a mail object. 
+            These parameters set the properties for the Mail object and must have valid data.
+            </summary>
+            <param name="mailbox"> The mailbox to look at. </param>
+            <param name="baseUrl"> The base URL used for API calls to the MS Graph API. </param>
+            <param name="authenticationResult"> The authentication result to acquire the bearer access token. </param>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.GetMessages">
+            <summary>
+            Gets the first 1000 messages by retrieving them as JObjects and then converting them to Message objects.
+            </summary>
+            <returns> A collection of Message objects or null if there's an issue calling the API or converting the JObjects. </returns>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.GetAttachmentsByMessageId(System.String)">
+            <summary>
+            Gets the attachments associated with a particular message by retrieving them as JObjects and then converting them to Attachment objects.
+            </summary>
+            <param name="messageId"> The string id of the message we want to grab attachments for.</param>
+            <returns> A collection of Attachment objects or null if there's an issue calling the API or converting the JObjects. </returns>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.GetFileAttachment(System.String,System.String)">
+            <summary>
+            Gets a file attachment from a message by retrieving it as a JObject and converting it to a FileAttachment object.
+            </summary>
+            <param name="messageId"> The string id of the message we want to grab a file attachment from. </param>
+            <param name="attachmentId"> the string id of the attachment we want to retrieve as a file attachment. </param>
+            <returns> A FileAttachment or null if there's an issue calling the API or converting the JObject. </returns>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.DeleteMessage(System.String)">
+            <summary>
+            Deletes a message from the mailbox.
+            </summary>
+            <param name="messageId"> The string id of the message to be deleted. </param>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.Mail.EndsWithExtension(System.String,System.Collections.Generic.ICollection{System.String})">
+            <summary>
+            Checks
+            </summary>
+            <param name="attachmentName"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="T:High_Radius_Invoice_Download_Automation.ProtectedApiCallHelper">
+            <summary>
+            Helper class to call a protected API and process its result
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:High_Radius_Invoice_Download_Automation.ProtectedApiCallHelper.GetRequest(System.String,System.String)" -->
+        <member name="T:High_Radius_Invoice_Download_Automation.PublicAppUsingUsernamePassword">
+            <summary>
+            Security token provider using username password.
+            Note that using username/password is not recommended. See https://aka.ms/msal-net-up
+            </summary>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.PublicAppUsingUsernamePassword.#ctor(Microsoft.Identity.Client.IPublicClientApplication)">
+            <summary>
+            Constructor of a public application leveraging username passwords to acquire a token
+            </summary>
+            <param name="app">MSAL.NET Public client application</param>
+            <param name="httpClient">HttpClient used to call the protected Web API</param>
+            <remarks>
+            For more information see https://aka.ms/msal-net-up
+            </remarks>
+        </member>
+        <member name="M:High_Radius_Invoice_Download_Automation.PublicAppUsingUsernamePassword.GetTokenForWebApiUsingUsernamePasswordAsync(System.Collections.Generic.IEnumerable{System.String},System.String,System.Security.SecureString)">
+            <summary>
+            Gets an access token so that the application accesses the web api in the name of the user
+            who is signed-in Windows (for a domain joined or AAD joined machine)
+            </summary>
+            <returns>An authentication result, or null if the user canceled sign-in</returns>
+        </member>
+    </members>
+</doc>
